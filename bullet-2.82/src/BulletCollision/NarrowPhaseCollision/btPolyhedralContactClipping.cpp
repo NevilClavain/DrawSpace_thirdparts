@@ -116,7 +116,12 @@ static int gActualSATPairTests=0;
 
 inline bool IsAlmostZero(const btVector3& v)
 {
+// ECH
+#ifdef BT_USE_DOUBLE_PRECISION
+    if(abs(v.x())>1e-6 || abs(v.y())>1e-6 || abs(v.z())>1e-6)	return false;
+#else
 	if(fabsf(v.x())>1e-6 || fabsf(v.y())>1e-6 || fabsf(v.z())>1e-6)	return false;
+#endif
 	return true;
 }
 

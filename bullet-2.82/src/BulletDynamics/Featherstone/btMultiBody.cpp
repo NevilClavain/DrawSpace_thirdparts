@@ -639,7 +639,10 @@ void btMultiBody::stepVelocities(btScalar dt,
         }
 		btVector3 rhs_top (zero_acc_top_angular[0][0], zero_acc_top_angular[0][1], zero_acc_top_angular[0][2]);
 		btVector3 rhs_bot (zero_acc_bottom_linear[0][0], zero_acc_bottom_linear[0][1], zero_acc_bottom_linear[0][2]);
-        float result[6];
+
+        // ECH
+        //float result[6];
+        btScalar result[6];
 
 		solveImatrix(rhs_top, rhs_bot, result);
 //		printf("result=%f,%f,%f,%f,%f,%f\n",result[0],result[0],result[0],result[0],result[0],result[0]);
@@ -678,8 +681,9 @@ void btMultiBody::stepVelocities(btScalar dt,
 }
 
 
-
-void btMultiBody::solveImatrix(const btVector3& rhs_top, const btVector3& rhs_bot, float result[6]) const
+// ECH
+//void btMultiBody::solveImatrix(const btVector3& rhs_top, const btVector3& rhs_bot, float result[6]) const
+void btMultiBody::solveImatrix(const btVector3& rhs_top, const btVector3& rhs_bot, btScalar result[6]) const
 {
 	int num_links = getNumLinks();
 	///solve I * x = rhs, so the result = invI * rhs
@@ -816,7 +820,9 @@ void btMultiBody::calcAccelerationDeltas(const btScalar *force, btScalar *output
 		btVector3 rhs_top (zero_acc_top_angular[0][0], zero_acc_top_angular[0][1], zero_acc_top_angular[0][2]);
 		btVector3 rhs_bot (zero_acc_bottom_linear[0][0], zero_acc_bottom_linear[0][1], zero_acc_bottom_linear[0][2]);
 		
-		float result[6];
+        // ECH
+		//float result[6];
+        btScalar result[6];
         solveImatrix(rhs_top,rhs_bot, result);
 	//	printf("result=%f,%f,%f,%f,%f,%f\n",result[0],result[0],result[0],result[0],result[0],result[0]);
 
@@ -883,7 +889,9 @@ void btMultiBody::stepPositions(btScalar dt)
     // Finally we can update joint_pos for each of the links
     for (int i = 0; i < num_links; ++i) 
 	{
-		float jointVel = getJointVel(i);
+        // ECH
+		//float jointVel = getJointVel(i);
+        btScalar jointVel = getJointVel(i);
         links[i].joint_pos += dt * jointVel;
         links[i].updateCache();
     }

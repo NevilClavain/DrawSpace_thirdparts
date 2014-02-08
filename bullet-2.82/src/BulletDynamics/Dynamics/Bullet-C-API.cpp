@@ -338,7 +338,9 @@ void plGetOrientation(plRigidBodyHandle object,plQuaternion orientation)
 
 //	extern  plRigidBodyHandle plObjectCast(plDynamicsWorldHandle world, const plVector3 rayStart, const plVector3 rayEnd, plVector3 hitpoint, plVector3 normal);
 
-double plNearestPoints(float p1[3], float p2[3], float p3[3], float q1[3], float q2[3], float q3[3], float *pa, float *pb, float normal[3])
+// ECH
+//double plNearestPoints(float p1[3], float p2[3], float p3[3], float q1[3], float q2[3], float q3[3], float *pa, float *pb, float normal[3])
+double plNearestPoints(btScalar p1[3], btScalar p2[3], btScalar p3[3], btScalar q1[3], btScalar q2[3], btScalar q3[3], btScalar *pa, btScalar *pb, btScalar normal[3])
 {
 	btVector3 vp(p1[0], p1[1], p1[2]);
 	btTriangleShape trishapeA(vp, 
